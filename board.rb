@@ -106,11 +106,13 @@ class Board
       @board[ex][ey] = piece
       piece.current_position = [ex, ey]
       @board[sx][sy] = nil
+      piece.first_move = false if piece.class == Pawn
     else
       raise ArgumentError.new "Piece cannot move that way."
     end
-    nil
 
+
+    nil
   end
 
   # def invalid_move_error
