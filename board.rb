@@ -30,8 +30,7 @@ class Board
 
   def in_check?(color)
     king_position = find_king_position(color)
-    find_all_possible_moves(color)
-
+    find_all_possible_moves(color).include?(king_position)
   end
 
   def find_king_position(color)
@@ -54,5 +53,36 @@ class Board
     end
     possible_moves
   end
+
+  def move(start_pos, end_pos)
+
+    sx = start_pos[0]
+    sy = start_pos[1]
+    ex = end_pos[0]
+    ey = end_pos[1]
+
+    piece = @board[sx][sy]
+    if start_ref.moves.include?(end_pos)
+      @board[ex][ey] = piece
+      piece.current_position = [ex, ey]
+      @board[sx][sy] = nil
+    else
+      raise ArgumentError "Piece cannot move that way."
+    end
+
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
 
 end

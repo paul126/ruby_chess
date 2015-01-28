@@ -21,8 +21,6 @@ class Piece
   end
 
   def has_piece(position)
-    # p @board
-    # p position
     if @board[position[0]][position[1]].is_a? Piece
       return @board[position[0]][position[1]].color
     end
