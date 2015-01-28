@@ -1,6 +1,6 @@
 
 class Piece
-  attr_accessor :current_position, :color
+  attr_accessor :current_position, :color, :board
 
   def initialize(position, color, board)
     @current_position = position
@@ -21,7 +21,10 @@ class Piece
   end
 
   def move_into_check?(position)
-
+    duped_board = @board.deep_dup
+    start_position = @current_position.dup
+    duped_board.move(start_position, position)
+    duped_board.in_check?(@color)
   end
 
   def deep_dup

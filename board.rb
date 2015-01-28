@@ -45,11 +45,12 @@ class Board
   end
 
   def deep_dup
-    duped_board = Array.new(8) { Array.new(8) }
+    duped_board = Board.new
     @board.each_with_index do |rows, x|
       rows.each_with_index do |tile, y|
-        duped_board[x][y] = tile.deep_dup unless tile.nil?
-        duped_board[x][y].board = duped_board
+        next if tile.nil?
+        duped_board.board[x][y] = tile.deep_dup
+        duped_board.board[x][y].board = duped_board.board
       end
     end
     duped_board

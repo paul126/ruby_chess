@@ -16,6 +16,18 @@ class Chess
 
   end
 
+  def test_method
+    puts @game_board.in_check?("white")
+    print_current_board
+    @game_board.board[6][3] = nil
+    @game_board.board[1][3] = nil
+    print_current_board
+    puts @game_board.in_check?("white")
+    print_current_board
+
+
+  end
+
   def print_current_board
 
     @game_board.board.each do |row|
