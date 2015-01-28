@@ -16,7 +16,7 @@ class Board
         @board[row][i] = Knight.new([row, i], color, self) if i == 1 || i == 6
         @board[row][i] = Bishop.new([row, i], color, self) if i == 2 || i == 5
         @board[row][i] = Queen.new([row, i], color, self) if i == 3
-        @board[row][i] = King.new([row, i], color, self) if i == 4 
+        @board[row][i] = King.new([row, i], color, self) if i == 4
       end
       color == color1 ? (row = 1) : (row = 6)
       @board[row].each_index do |i|
@@ -78,7 +78,19 @@ class Board
     possible_moves
   end
 
-  def move(start_pos, end_pos)
+  def on_board?(position)
+    if position[0].between?(0, 7) && position[1].between?(0, 7)
+      return true
+    else
+      false
+    end
+  end
+
+  def move(start_pos, end_pos, current_color)
+
+    if !on_board?(start_pos) || !on_board?(end_pos)
+      raise ArgumentError.new "Move not on the board."
+    end
 
     sx = start_pos[0]
     sy = start_pos[1]
@@ -86,7 +98,11 @@ class Board
     ey = end_pos[1]
 
     piece = @board[sx][sy]
-    if piece.moves.include?(end_pos)
+    if piece.nil?
+      raise ArgumentError.new "No piece selected."
+    elsif piece.color != current_color
+      raise ArgumentError.new "Incorrect piece selected."
+    elsif piece.moves.include?(end_pos)
       @board[ex][ey] = piece
       piece.current_position = [ex, ey]
       @board[sx][sy] = nil
@@ -96,6 +112,11 @@ class Board
     nil
 
   end
+
+  # def invalid_move_error
+  #   begin
+  #     if
+  # end
 
 
 

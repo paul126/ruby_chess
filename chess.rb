@@ -15,10 +15,24 @@ class Chess
     until @game_board.checkmate?(@player1.color) ||
           @game_board.checkmate?(@player2.color)
       print_current_board
-      move_arr = ask_for_move
-      @game_board.move(move_arr[0], move_arr[1])
+      puts "Current Turn: #{current_turn}"
+      begin
+        move_arr = ask_for_move
+        @game_board.move(move_arr[0], move_arr[1], current_color)
+      rescue ArgumentError
+        puts "Invalid move."
+        retry
+      end
       switch_turn
     end
+  end
+
+  def current_color
+    @player1_turn ? @player1.color : @player2.color
+  end
+
+  def current_turn
+    @player1_turn ? "Player 1" : "Player 2"
   end
 
   def ask_for_move
