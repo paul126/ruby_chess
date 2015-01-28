@@ -86,6 +86,7 @@ class Board
     end
   end
 
+
   def move(start_pos, end_pos, current_color)
 
     if !on_board?(start_pos) || !on_board?(end_pos)
@@ -102,7 +103,7 @@ class Board
       raise ArgumentError.new "No piece selected."
     elsif piece.color != current_color
       raise ArgumentError.new "Incorrect piece selected."
-    elsif piece.moves.include?(end_pos)
+    elsif piece.valid_moves.include?(end_pos)
       @board[ex][ey] = piece
       piece.current_position = [ex, ey]
       @board[sx][sy] = nil
@@ -111,6 +112,24 @@ class Board
       raise ArgumentError.new "Piece cannot move that way."
     end
 
+    # in_check?(current_color) &&
+    # raise ArgumentError.new "Still in check."
+
+    nil
+  end
+
+  def move!(start_pos, end_pos, current_color)
+
+    sx = start_pos[0]
+    sy = start_pos[1]
+    ex = end_pos[0]
+    ey = end_pos[1]
+
+    piece = @board[sx][sy]
+    @board[ex][ey] = piece
+    piece.current_position = [ex, ey]
+    @board[sx][sy] = nil
+    piece.first_move = false if piece.class == Pawn
 
     nil
   end

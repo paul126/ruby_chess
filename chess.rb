@@ -13,7 +13,8 @@ class Chess
   end
 
   def play
-
+    print_welcome
+    get_player_names
     until @game_board.checkmate?(@player1.color) ||
           @game_board.checkmate?(@player2.color)
       print_current_board
@@ -30,12 +31,23 @@ class Chess
 
   end
 
+  def print_welcome
+    puts "Welcome to Chess.  Player 1 will be white, Player 2 will be black."
+  end
+
+  def get_player_names
+    puts "Please enter Player 1's name: "
+    @player1.name = gets.chomp
+    puts "Please enter Player 2's name: "
+    @player2.name = gets.chomp
+  end
+
   def current_color
     @player1_turn ? @player1.color : @player2.color
   end
 
   def current_turn
-    @player1_turn ? "Player 1" : "Player 2"
+    @player1_turn ? @player1.name : @player2.name
   end
 
   def ask_for_move

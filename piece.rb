@@ -23,7 +23,7 @@ class Piece
   def move_into_check?(position)
     duped_board = @board_object.deep_dup
     start_position = @current_position.dup
-    duped_board.move(start_position, position)
+    duped_board.move!(start_position, position, @color)
     duped_board.in_check?(@color)
   end
 
@@ -40,6 +40,8 @@ class Piece
   end
 
   def has_piece(position)
+    return nil if !on_board?(position)
+    return nil if position.empty?
     if @board[position[0]][position[1]].is_a? Piece
       return @board[position[0]][position[1]].color
     end

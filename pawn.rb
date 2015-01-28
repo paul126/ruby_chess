@@ -28,7 +28,7 @@ class Pawn < Piece
       end
     end
 
-    moves_arr.pop if !@first_move
+    moves_arr.pop if !@first_move && moves_arr.length > 1
 
     CAPTURE_DELTAS.each do |i|
       if self.color == "white"

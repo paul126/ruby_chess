@@ -19,7 +19,7 @@ class HumanPlayer
     "1" => 7,
   }
 
-  attr_accessor :color
+  attr_accessor :color, :name
 
   def initialize(color)
     @color = color
