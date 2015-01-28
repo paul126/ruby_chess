@@ -9,11 +9,13 @@ class SlidingPiece < Piece
         position[0] += delta[0]
         position[1] += delta[1]
 
-        if self.color == has_piece(position)
+        if !on_board?(position)
+          break
+        elsif self.color == has_piece(position)
           break
         elsif has_piece(position).nil? && !on_board?(position)
           break
-        elsif !has_piece(position).nil? && on_board?(position)
+        elsif on_board?(position) && !has_piece(position).nil?
           moves_arr << position.dup
           break
         elsif on_board?(position)
