@@ -22,8 +22,8 @@ class Chess
       begin
         move_arr = ask_for_move
         @game_board.move(move_arr[0], move_arr[1], current_color)
-      rescue ArgumentError
-        puts "Invalid move."
+      rescue ArgumentError => e
+        puts "#{e.message}"
         retry
       end
       switch_turn
@@ -32,7 +32,7 @@ class Chess
   end
 
   def print_welcome
-    puts "Welcome to Chess.  Player 1 will be white, Player 2 will be black."
+    puts "Welcome to Chess. Player 1 will be black, Player 2 will be white."
   end
 
   def get_player_names
