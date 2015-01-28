@@ -20,6 +20,16 @@ class Piece
     end
   end
 
+  def move_into_check?(position)
+
+  end
+
+  def deep_dup
+    duped_piece = self.dup
+    duped_piece.current_position = @current_position.dup
+    duped_piece
+  end
+
   def has_piece(position)
     if @board[position[0]][position[1]].is_a? Piece
       return @board[position[0]][position[1]].color

@@ -11,8 +11,8 @@ class Chess
     print_current_board
 
     #test cases
-    @game_board.board[0][1].moves
-    @game_board.board[7][0].moves
+    # @game_board.board[0][1].moves
+    # @game_board.board[7][0].moves
 
   end
 

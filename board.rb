@@ -44,6 +44,17 @@ class Board
     nil
   end
 
+  def deep_dup
+    duped_board = Array.new(8) { Array.new(8) }
+    @board.each_with_index do |rows, x|
+      rows.each_with_index do |tile, y|
+        duped_board[x][y] = tile.deep_dup unless tile.nil?
+        duped_board[x][y].board = duped_board
+      end
+    end
+    duped_board
+  end
+
   def find_all_possible_moves(color)
     possible_moves = []
 
@@ -62,14 +73,14 @@ class Board
     ey = end_pos[1]
 
     piece = @board[sx][sy]
-    if start_ref.moves.include?(end_pos)
+    if piece.moves.include?(end_pos)
       @board[ex][ey] = piece
       piece.current_position = [ex, ey]
       @board[sx][sy] = nil
     else
-      raise ArgumentError "Piece cannot move that way."
+      raise ArgumentError.new "Piece cannot move that way."
     end
-
+    nil
 
   end
 
