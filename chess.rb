@@ -15,7 +15,6 @@ class Chess
     @game_board.board[1][0] = nil
     @game_board.board[0][0].moves
 
-
   end
 
   def print_current_board
@@ -34,7 +33,7 @@ class Chess
     end
     nil
   end
-  
+
 
 
 end
