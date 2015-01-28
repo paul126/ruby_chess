@@ -6,6 +6,8 @@ class Board
   end
 
   def generate_board(color1, color2)
+    @color1 = color1
+    @color2 = color2
     color_arr = [color1, color2]
     color_arr.each do |color|
       color == color1 ? (row = 0) : (row = 7)
@@ -48,7 +50,7 @@ class Board
 
     @board.flatten.each do |tile|
       next if tile.nil? || tile.color == color
-      possible_moves += tile.moves
+      possible_moves += tile.moves unless tile.moves.empty?
     end
     possible_moves
   end
