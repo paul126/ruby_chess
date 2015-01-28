@@ -30,7 +30,11 @@ class Board
 
   def in_check?(color)
     king_position = find_king_position(color)
-    find_all_possible_moves(color).include?(king_position)
+    find_all_opponent_moves(color).include?(king_position)
+  end
+
+  def checkmate?(color)
+    in_check?(color) && find_all_self_moves(color).empty?
   end
 
   def find_king_position(color)
@@ -56,12 +60,22 @@ class Board
     duped_board
   end
 
-  def find_all_possible_moves(color)
+  def find_all_opponent_moves(color)
     possible_moves = []
 
     @board.flatten.each do |tile|
       next if tile.nil? || tile.color == color
       possible_moves += tile.moves unless tile.moves.empty?
+    end
+    possible_moves
+  end
+
+  def find_all_self_moves(color)
+    possible_moves = []
+
+    @board.flatten.each do |tile|
+      next if tile.nil? || tile.color != color
+      possible_moves += tile.valid_moves unless tile.valid_moves.empty?
     end
     possible_moves
   end

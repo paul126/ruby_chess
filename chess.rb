@@ -4,6 +4,8 @@ class Chess
 
   def initialize
     @game_board = Board.new
+    @player1 = HumanPlayer.new("black")
+    @player2 = HumanPlayer.new("white")
   end
 
   def play
