@@ -49,6 +49,6 @@ class Pawn < Piece
   end
 
   def display
-    (@color == "black") ? "P" : "p"
+    (@color == "black") ? "\u265F" : "\u2659"
   end
 end

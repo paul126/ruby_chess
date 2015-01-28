@@ -12,7 +12,7 @@ class Queen < SlidingPiece
   ]
 
   def display
-    (@color == "black") ? "Q" : "q"
+    (@color == "black") ? "\u265B" : "\u2655"
   end
 
 end

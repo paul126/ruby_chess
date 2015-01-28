@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Chess
 
   attr_accessor :game_board, :player1_turn
@@ -25,6 +27,7 @@ class Chess
       end
       switch_turn
     end
+
   end
 
   def current_color
@@ -43,25 +46,23 @@ class Chess
     @player1_turn = !@player1_turn
   end
 
-  def test_method
-    puts @game_board.in_check?("white")
-    print_current_board
-    @game_board.board[6][3] = nil
-    @game_board.board[1][3] = nil
-    print_current_board
-    puts @game_board.in_check?("white")
-    print_current_board
-
-
-  end
-
   def print_current_board
-    @game_board.board.each do |row|
-      row.each do |tile|
+    print " abcdefgh \n"
+    @game_board.board.each_with_index do |row, x|
+      print "#{8 - x}"
+      row.each_with_index do |tile, y|
         if tile.nil?
-          print "+"
+          if (x.even? && y.even?) || (x.odd? && y.odd?)
+            print " "
+          else
+            print " ".on_light_white
+          end
         else
-          print tile.display
+          if (x.even? && y.even?) || (x.odd? && y.odd?)
+            print tile.display.encode('utf-8')
+          else
+            print tile.display.encode('utf-8').on_light_white
+          end
         end
       end
       print "\n"

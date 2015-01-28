@@ -8,7 +8,7 @@ class Bishop < SlidingPiece
   ]
 
   def display
-    (@color == "black") ? "B" : "b"
+    (@color == "black") ? "\u265D" : "\u2657"
   end
 
 end

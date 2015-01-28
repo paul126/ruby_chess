@@ -12,7 +12,7 @@ class Knight < SteppingPiece
   ]
 
   def display
-    (@color == "black") ? "H" : "h"
+    (@color == "black") ? "\u265E" : "\u2658"
   end
 
 end

@@ -12,7 +12,7 @@ class King < SteppingPiece
   ]
 
   def display
-    (@color == "black") ? "K" : "k"
+    (@color == "black") ? "\u265A" : "\u2654"
   end
 
 end

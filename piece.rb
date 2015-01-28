@@ -1,4 +1,3 @@
-
 class Piece
   attr_accessor :current_position, :color, :board
 
