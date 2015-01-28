@@ -7,4 +7,8 @@ class Rook < SlidingPiece
     [0, 1]
   ]
 
+  def display
+    (@color == "black") ? "R" : "r"
+  end
+
 end

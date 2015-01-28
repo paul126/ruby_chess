@@ -11,5 +11,8 @@ class Knight < SteppingPiece
     [-1, -2]
   ]
 
+  def display
+    (@color == "black") ? "H" : "h"
+  end
 
 end

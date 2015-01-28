@@ -7,4 +7,8 @@ class Bishop < SlidingPiece
     [1, 1]
   ]
 
+  def display
+    (@color == "black") ? "B" : "b"
+  end
+
 end

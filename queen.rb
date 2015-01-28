@@ -11,4 +11,8 @@ class Queen < SlidingPiece
     [0, 1]
   ]
 
+  def display
+    (@color == "black") ? "Q" : "q"
+  end
+
 end

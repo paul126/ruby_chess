@@ -12,7 +12,10 @@ class HumanPlayer
     puts "Enter end position."
     end_pos = gets.chomp
 
-    [start_pos, end_pos]    
+    start_pos = start_pos.split(",").map { |num| num.to_i }
+    end_pos = end_pos.split(",").map { |num| num.to_i }
+
+    [start_pos, end_pos]
   end
 
 end

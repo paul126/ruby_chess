@@ -1,21 +1,32 @@
 class Chess
 
-  attr_accessor :game_board
+  attr_accessor :game_board, :player1_turn
 
   def initialize
     @game_board = Board.new
     @player1 = HumanPlayer.new("black")
     @player2 = HumanPlayer.new("white")
+    @game_board.generate_board(@player1.color, @player2.color)
+    @player1_turn = true
   end
 
   def play
-    @game_board.generate_board("black", "white")
-    print_current_board
 
-    #test cases
-    # @game_board.board[0][1].moves
-    # @game_board.board[7][0].moves
+    until @game_board.checkmate?(@player1.color) ||
+          @game_board.checkmate?(@player2.color)
+      print_current_board
+      move_arr = ask_for_move
+      @game_board.move(move_arr[0], move_arr[1])
+      switch_turn
+    end
+  end
 
+  def ask_for_move
+    @player1_turn ? @player1.play_turn : @player2.play_turn
+  end
+
+  def switch_turn
+    @player1_turn = !@player1_turn
   end
 
   def test_method
@@ -31,18 +42,15 @@ class Chess
   end
 
   def print_current_board
-
     @game_board.board.each do |row|
       row.each do |tile|
-        print "P" if tile.is_a? Pawn
-        print "R" if tile.is_a? Rook
-        print "H" if tile.is_a? Knight
-        print "B" if tile.is_a? Bishop
-        print "K" if tile.is_a? King
-        print "Q" if tile.is_a? Queen
-        print "+" if tile.nil?
+        if tile.nil?
+          print "+"
+        else
+          print tile.display
+        end
       end
-      puts ""
+      print "\n"
     end
     nil
   end

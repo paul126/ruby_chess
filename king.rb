@@ -11,4 +11,8 @@ class King < SteppingPiece
     [-1, -1]
   ]
 
+  def display
+    (@color == "black") ? "K" : "k"
+  end
+
 end
