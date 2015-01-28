@@ -9,7 +9,7 @@ class Chess
     @player1 = HumanPlayer.new("black")
     @player2 = HumanPlayer.new("white")
     @game_board.generate_board(@player1.color, @player2.color)
-    @player1_turn = true
+    @player1_turn = false
   end
 
   def play
@@ -17,6 +17,7 @@ class Chess
     get_player_names
     until @game_board.checkmate?(@player1.color) ||
           @game_board.checkmate?(@player2.color)
+      switch_turn
       print_current_board
       puts "Current Turn: #{current_turn}"
       begin
@@ -26,13 +27,19 @@ class Chess
         puts "#{e.message}"
         retry
       end
-      switch_turn
     end
+
+    print_win_message
 
   end
 
   def print_welcome
     puts "Welcome to Chess. Player 1 will be black, Player 2 will be white."
+  end
+
+  def print_win_message
+    print_current_board
+    puts "Congratulations #{current_turn}, you won!"
   end
 
   def get_player_names
