@@ -2,10 +2,11 @@
 class Piece
   attr_accessor :current_position, :color, :board
 
-  def initialize(position, color, board)
+  def initialize(position, color, board_object)
     @current_position = position
     @color = color
-    @board = board
+    @board_object = board_object
+    @board = @board_object.board
   end
 
   def moves
@@ -21,10 +22,16 @@ class Piece
   end
 
   def move_into_check?(position)
-    duped_board = @board.deep_dup
+    duped_board = @board_object.deep_dup
     start_position = @current_position.dup
     duped_board.move(start_position, position)
     duped_board.in_check?(@color)
+  end
+
+  def valid_moves
+    possible_moves = moves
+    possible_moves.reject! {|position| move_into_check?(position)}
+    possible_moves
   end
 
   def deep_dup
