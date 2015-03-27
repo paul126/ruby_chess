@@ -89,6 +89,4 @@ class Chess
     nil
   end
 
-
-
 end
