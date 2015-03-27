@@ -36,7 +36,6 @@ class Board
   end
 
   def find_king_position(color)
-
     @board.flatten.each do |tile|
       next if tile.nil?
       if tile.class == King && tile.color == color
@@ -112,9 +111,6 @@ class Board
       raise ArgumentError.new "Piece cannot move that way."
     end
 
-    # in_check?(current_color) &&
-    # raise ArgumentError.new "Still in check."
-
     nil
   end
 
@@ -133,22 +129,4 @@ class Board
 
     nil
   end
-
-  # def invalid_move_error
-  #   begin
-  #     if
-  # end
-
-
-
-
-
-
-
-
-
-
-
-
-
 end

@@ -15,8 +15,7 @@ class Chess
   def play
     print_welcome
     get_player_names
-    until @game_board.checkmate?(@player1.color) ||
-          @game_board.checkmate?(@player2.color)
+    until game_over
       switch_turn
       print_current_board
       puts "Current Turn: #{current_turn}"
@@ -47,6 +46,10 @@ class Chess
     @player1.name = gets.chomp
     puts "Please enter Player 2's name: "
     @player2.name = gets.chomp
+  end
+
+  def game_over
+    @game_board.checkmate?(@player1.color) || @game_board.checkmate?(@player2.color)
   end
 
   def current_color
@@ -84,8 +87,10 @@ class Chess
           end
         end
       end
+      print "#{8 - x}"
       print "\n"
     end
+    print " abcdefgh \n"
     nil
   end
 
