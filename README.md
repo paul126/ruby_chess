@@ -1,6 +1,6 @@
 # Ruby Chess
 
-A text-based chess game built in Ruby.
+A text-based chess game for the command line built in Ruby.
 
 ## Instructions to Play
 
